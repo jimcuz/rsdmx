@@ -219,10 +219,12 @@ setSDMXServiceProviders <- function(){ # nocov start
   ABS <- SDMXServiceProvider(
     agencyId = "ABS", name = "Australian Bureau of Statistics",
     scale = "national", country = "AUS",
-    builder = SDMXDotStatRequestBuilder(
-      regUrl = "http://stat.data.abs.gov.au/restsdmx/sdmx.ashx",
-      repoUrl = "http://stat.data.abs.gov.au/restsdmx/sdmx.ashx", 
-      forceProviderId = TRUE, unsupportedResources = list("dataflow"))
+    builder = rsdmx::SDMXREST21RequestBuilder(
+      regUrl = "https://api.data.abs.gov.au",
+      repoUrl = "https://api.data.abs.gov.au", 
+      compliant = TRUE, # based on ABS description of REST interface from website
+      forceProviderId = FALSE # unsure if accurate - leaving FALSE given structure of example URLs from ABS
+    )
   )
   
   #NBB {Belgium}
